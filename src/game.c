@@ -12,13 +12,15 @@ void drawEnemy(Enemy *enemy_name);
 int main() {
 	const int screenWidth = 800;
 	const int screenHeight = 450;
-	int halfWidth = screenWidth/2;
-	int halfHeight = screenHeight/2;
+	float halfWidth = screenWidth/2;
+	float halfHeight = screenHeight/2;
 
 	Color aqua_color = {0, 255, 228, 255};
 
-	Player player = { halfWidth, halfHeight, 4, {halfWidth, halfHeight, 25, 25} };
-	Enemy enemy = { halfWidth-20, halfHeight-20, 4, {halfWidth, halfHeight, 25, 25} };
+	const int rectHeight = 25;
+	const int rectWidth = 25;
+	Player player = { halfWidth, halfHeight, 4, {halfWidth - (rectWidth/2.0f), halfHeight - (rectHeight/2.0f), 25, 25} };
+	Enemy enemy = { halfWidth-20, halfHeight-20, 4, {halfWidth - (rectWidth/2.0f), halfHeight - (rectHeight/2.0f), 25, 25} };
 
 	InitWindow(screenWidth, screenHeight, "My First Raylib Window!");
 	SetWindowState(FLAG_WINDOW_RESIZABLE);
