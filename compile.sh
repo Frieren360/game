@@ -1,2 +1,2 @@
 #!/bin/sh
-gcc src/game.c -o game -lraylib
+gcc src/game.c -o build/game -lraylib
