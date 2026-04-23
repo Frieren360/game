@@ -12,15 +12,16 @@ void drawEnemy(Enemy *enemy_name);
 int main() {
 	const int screenWidth = 800;
 	const int screenHeight = 450;
-	float halfWidth = screenWidth/2;
-	float halfHeight = screenHeight/2;
+	float halfScreenWidth = screenWidth/2;
+	float halfScreenHeight = screenHeight/2;
 
 	Color aqua_color = {0, 255, 228, 255};
 
 	const int rectHeight = 25;
 	const int rectWidth = 25;
-	Player player = { halfWidth, halfHeight, 4, {halfWidth - (rectWidth/2.0f), halfHeight - (rectHeight/2.0f), 25, 25} };
-	Enemy enemy = { halfWidth-20, halfHeight-20, 4, {halfWidth - (rectWidth/2.0f), halfHeight - (rectHeight/2.0f), 25, 25} };
+
+	Player player = { halfScreenWidth, halfScreenHeight, 4, {halfScreenWidth, halfScreenHeight, 25, 25} };
+	Enemy enemy = { halfScreenWidth, halfScreenHeight, 4, {halfScreenWidth, halfScreenHeight, 25, 25} };
 
 	InitWindow(screenWidth, screenHeight, "My First Raylib Window!");
 	SetWindowState(FLAG_WINDOW_RESIZABLE);
@@ -36,7 +37,6 @@ int main() {
 	{
 			updatePlayer(&player);
 
-			Camera2D camera = { 0 };
 			camera.target = (Vector2){ player.x, player.y };
 			camera.offset = (Vector2){
 					GetScreenWidth()/2.0f,
@@ -58,6 +58,8 @@ int main() {
 					DrawCircle(200, 200, 20, RED);
 					drawEnemy(&enemy);
 					drawPlayer(&player);
+					//DrawRectangleRec(player.hitbox, (Color)YELLOW);
+					//DrawRectangleRec(enemy.hitbox, (Color)PURPLE);
 			EndMode2D();
 
 			EndDrawing();
