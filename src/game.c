@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+//#include <stdlib.h>
 #include <raylib.h>
 
 #include "entity/player.h"
@@ -53,7 +53,7 @@ int main() {
 
 			BeginMode2D(camera);
 					DrawRectangle(200, 200, 50, 50, GREEN);
-					DrawCircle(200, 200, 20, RED); // IMPORTANT: reference object
+					DrawCircle(200, 200, 20, RED);
 					drawEnemy(&enemy);
 					drawPlayer(&player);
 			EndMode2D();
