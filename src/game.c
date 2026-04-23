@@ -2,22 +2,23 @@
 #include <stdlib.h>
 #include <raylib.h>
 
-typedef struct Player {
-	float x;
-	float y;
-	float speed;
-} Player;
+#include "entity/player.h"
+#include "entity/enemy.h"
 
 void updatePlayer(Player *player_name);
 void drawPlayer(Player *player_name);
+void drawEnemy(Enemy *enemy_name);
 
 int main() {
 	const int screenWidth = 800;
 	const int screenHeight = 450;
+	int halfWidth = screenWidth/2;
+	int halfHeight = screenHeight/2;
 
 	Color aqua_color = {0, 255, 228, 255};
 
-	Player player = { screenWidth/2, screenHeight/2, 4 };
+	Player player = { halfWidth, halfHeight, 4 };
+	Enemy enemy = { halfWidth-20, halfHeight-20, 4};
 
 	InitWindow(screenWidth, screenHeight, "My First Raylib Window!");
 	SetWindowState(FLAG_WINDOW_RESIZABLE);
@@ -45,9 +46,10 @@ int main() {
 			ClearBackground(aqua_color);
 
 			BeginMode2D(camera);
-					drawPlayer(&player);
-
+					DrawRectangle(200, 200, 50, 50, GREEN);
 					DrawCircle(200, 200, 20, RED); // IMPORTANT: reference object
+					drawEnemy(&enemy);
+					drawPlayer(&player);
 			EndMode2D();
 
 			EndDrawing();
@@ -67,5 +69,9 @@ void updatePlayer(Player *p) {
 
 void drawPlayer(Player *p) {
 	DrawRectangle(p->x, p->y, 25, 25, WHITE);
+}
+
+void drawEnemy(Enemy *p) {
+	DrawRectangle(p->x, p->y, 25, 25, RED);
 }
 
