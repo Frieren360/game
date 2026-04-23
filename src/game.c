@@ -17,8 +17,8 @@ int main() {
 
 	Color aqua_color = {0, 255, 228, 255};
 
-	Player player = { halfWidth, halfHeight, 4 };
-	Enemy enemy = { halfWidth-20, halfHeight-20, 4};
+	Player player = { halfWidth, halfHeight, 4, {halfWidth, halfHeight, 25, 25} };
+	Enemy enemy = { halfWidth-20, halfHeight-20, 4, {halfWidth, halfHeight, 25, 25} };
 
 	InitWindow(screenWidth, screenHeight, "My First Raylib Window!");
 	SetWindowState(FLAG_WINDOW_RESIZABLE);
@@ -45,6 +45,12 @@ int main() {
 			BeginDrawing();
 			ClearBackground(aqua_color);
 
+		if (CheckCollisionRecs(player.hitbox, enemy.hitbox)) {
+			printf("TOUCHING\n");
+		}
+		else
+			printf("NOT TOUCHING\n");
+
 			BeginMode2D(camera);
 					DrawRectangle(200, 200, 50, 50, GREEN);
 					DrawCircle(200, 200, 20, RED); // IMPORTANT: reference object
@@ -65,6 +71,8 @@ void updatePlayer(Player *p) {
 			p->y -= p->speed;
 	if (IsKeyDown(KEY_DOWN))
 			p->y += p->speed;
+	p->hitbox.x = p->x;
+	p->hitbox.y = p->y;
 }
 
 void drawPlayer(Player *p) {

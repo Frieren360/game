@@ -4,5 +4,6 @@ typedef struct Player {
 	float x;
 	float y;
 	float speed;
+	Rectangle hitbox;
 } Player;
 #endif

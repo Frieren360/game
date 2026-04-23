@@ -4,5 +4,6 @@ typedef struct Enemy {
 	float x;
 	float y;
 	float speed;
+	Rectangle hitbox;
 } Enemy;
 #endif
