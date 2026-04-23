@@ -20,8 +20,19 @@ int main() {
 	const int rectHeight = 25;
 	const int rectWidth = 25;
 
-	Player player = { halfScreenWidth, halfScreenHeight, 4, {halfScreenWidth, halfScreenHeight, 25, 25} };
-	Enemy enemy = { halfScreenWidth, halfScreenHeight, 4, {halfScreenWidth, halfScreenHeight, 25, 25} };
+	Player player = {
+		.x = halfScreenWidth,
+		.y = halfScreenHeight,
+		.speed = 4,
+		.health = 100,
+		.hitbox = {halfScreenWidth, halfScreenHeight, 25, 25}
+	};
+	Enemy enemy = {
+		.x = halfScreenWidth,
+		.y = halfScreenHeight,
+		.speed = 4,
+		.hitbox = {halfScreenWidth, halfScreenHeight, 25, 25}
+	};
 
 	InitWindow(screenWidth, screenHeight, "My First Raylib Window!");
 	SetWindowState(FLAG_WINDOW_RESIZABLE);
@@ -48,10 +59,9 @@ int main() {
 			ClearBackground(aqua_color);
 
 		if (CheckCollisionRecs(player.hitbox, enemy.hitbox)) {
-			printf("TOUCHING\n");
+			player.health -= 5;
+			printf("Health = %d\n", player.health);
 		}
-		else
-			printf("NOT TOUCHING\n");
 
 			BeginMode2D(camera);
 					DrawRectangle(200, 200, 50, 50, GREEN);
