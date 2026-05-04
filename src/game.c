@@ -67,6 +67,7 @@ int main() {
 		if (CheckCollisionRecs(player.hitbox, enemy.hitbox)) {
 			if (!player.colliding) {
 				player.health -= 5;
+				player.timer = player.cooldown;
 				player.colliding = true;
 			}
 			else if (player.timer == player.cooldown) {
