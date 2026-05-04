@@ -1,7 +1,7 @@
 #ifndef PLAYER_H
 #include <stdbool.h>
 #define PLAYER_H
-typedef struct Player {
+typedef struct Entity {
 	float x;
 	float y;
 	float speed;
@@ -10,5 +10,5 @@ typedef struct Player {
 	float cooldown;
 	float timer;
 	bool colliding;
-} Player;
+} Entity;
 #endif

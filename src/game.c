@@ -1,15 +1,12 @@
 #include <stdio.h>
 //#include <stdlib.h>
 #include <raylib.h>
-
-#include "entity/player.h"
-#include "entity/enemy.h"
-
+#include "entity.h"
 #include "variables/globals.h"
 
-void updatePlayer(Player *player_name);
-void drawPlayer(Player *player_name);
-void drawEnemy(Enemy *enemy_name);
+void updatePlayer(Entity *player_name);
+void drawPlayer(Entity *player_name);
+void drawEnemy(Entity *enemy_name);
 
 float delta = 0;
 
@@ -25,7 +22,7 @@ int main() {
 	const int rectWidth = 25;
 
 
-	Player player = {
+	Entity player = {
 		.x = halfScreenWidth,
 		.y = halfScreenHeight,
 		.speed = 500,
@@ -35,7 +32,7 @@ int main() {
 		.timer = 0.0,
 		.colliding = false
 	};
-	Enemy enemy = {
+	Entity enemy = {
 		.x = halfScreenWidth,
 		.y = halfScreenHeight,
 		.speed = 5000,
@@ -94,7 +91,7 @@ int main() {
 	}
 }
 
-void updatePlayer(Player *p) {
+void updatePlayer(Entity *p) {
 	if (IsKeyDown(KEY_RIGHT))
 			p->x += p->speed*delta;
 	if (IsKeyDown(KEY_LEFT))
@@ -114,11 +111,11 @@ void updatePlayer(Player *p) {
 	}
 }
 
-void drawPlayer(Player *p) {
+void drawPlayer(Entity *p) {
 	DrawRectangle(p->x, p->y, 25, 25, WHITE);
 }
 
-void drawEnemy(Enemy *p) {
+void drawEnemy(Entity *p) {
 	DrawRectangle(p->x, p->y, 25, 25, RED);
 }
 
